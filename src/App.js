@@ -1,25 +1,25 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import ColorForm from './colorAddForm';
+import ShowColors from './colorShow';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    colors: [],
+  };
+
+  handleAddColor = (color) => {
+    this.setState((prevState) => ({ colors: [...prevState.colors, color] }));
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <ColorForm onAddColor={this.handleAddColor} />
+        <ShowColors colors={this.state.colors} />
+      </div>
+    );
+  }
 }
 
 export default App;
